@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import { getPokemonAction } from "../app/features/pokemonAsyncActions";
 import { Img } from "app/components/Image";
+import { Card } from "app/components/Card";
+import { H1 } from "app/components/Typography";
+import { useHistory } from "react-router";
 
 const PokemonPage = () => {
   const dispatch = useDispatch();
@@ -10,6 +13,7 @@ const PokemonPage = () => {
     (state: RootState) => state.pokemon
   );
 
+  const history = useHistory();
   //local state
   // const [pokemon, setPokemon] = useState<PokemonModel>();
 
@@ -30,17 +34,20 @@ const PokemonPage = () => {
   // };
 
   return (
-    <div>
+    <div style={{ display: "grid", gridTemplateColumns: "32% 32% 32%" }}>
       {pokemons.results?.map((pokemon, index) => (
         <div key={pokemon.name + pokemon.url}>
-          <Img
-            src={`https://pokeres.bastionbot.org/images/pokemon/${
-              index + 1
-            }.png`}
-            alt="picture"
-          />
-
-          <div> {pokemon.name} </div>
+          <Card onClick={() => alert("next page Pokemon")}>
+            <Img
+              src={`https://pokeres.bastionbot.org/images/pokemon/${
+                index + 1
+              }.png`}
+              alt="picture"
+            />
+            <Card>
+              <H1> {pokemon.name} </H1>
+            </Card>
+          </Card>
         </div>
       ))}
     </div>

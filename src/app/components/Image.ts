@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
 export const Img = styled.img`
-  height: 40%
-  width: 60%
+  height: 60%;
+  width: 40%;
 `;
