@@ -1,6 +1,11 @@
+import { PokemonModel } from "app/models/PokemonModel";
+import { PokemonDetailModel } from "../app/models/PokemonDetailModel";
 import { api } from "../app/axios";
-import { PokemonModel } from "../app/features/pokemonTypes";
 
 export async function getPokemonAxios() {
-    return await api.get<PokemonModel>("/");
+  return await api.get<PokemonModel>("/");
+}
+
+export async function getPokemonDetailAxios(id: string) {
+  return await api.get<PokemonDetailModel>("/" + id);
 }

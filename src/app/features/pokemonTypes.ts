@@ -1,25 +1,16 @@
+import { PokemonModel } from "../models/PokemonModel";
+import { PokemonDetailModel } from "../models/PokemonDetailModel";
+
 export type PokemonStateType = {
-    readonly pokemons: PokemonModel;
-    readonly pokemon: PokemonModel;
-    readonly loading: boolean;
-};
-
-export type PokemonModel = {
-    count: number;
-    next: string;
-    previous?: any;
-    results: Result[];
-};
-
-export type Result = {
-    name: string;
-    url: string;
+  readonly pokemon: PokemonModel;
+  readonly pokemonDetail: PokemonDetailModel;
+  readonly loading: boolean;
 };
 
 export const pokemonNamespace = "pokemon";
 
 //action types
 export const PokemonActionTypes = {
-    FETCH_POKEMONS: `${pokemonNamespace}/FETCH_POKEMONS`,
-    FETCH_POKEMON_BY_ID: `${pokemonNamespace}/FETCH_POKEMON_BY_ID`,
+  FETCH_POKEMONS: `${pokemonNamespace}/FETCH_POKEMONS`,
+  FETCH_POKEMON_DETAIL: `${pokemonNamespace}/FETCH_POKEMON_DETAIL`,
 };

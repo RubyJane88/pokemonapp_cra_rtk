@@ -9,9 +9,7 @@ import { useHistory } from "react-router";
 
 const PokemonPage = () => {
   const dispatch = useDispatch();
-  const { pokemons, loading } = useSelector(
-    (state: RootState) => state.pokemon
-  );
+  const { pokemon, loading } = useSelector((state: RootState) => state.pokemon);
 
   const history = useHistory();
   //local state
@@ -35,7 +33,7 @@ const PokemonPage = () => {
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "32% 32% 32%" }}>
-      {pokemons.results?.map((pokemon, index) => (
+      {pokemon.results?.map((pokemon, index) => (
         <div key={pokemon.name + pokemon.url}>
           <Card onClick={() => alert("next page Pokemon")}>
             <Img
