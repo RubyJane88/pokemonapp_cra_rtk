@@ -47,6 +47,11 @@ export const pokemonSlice = createSlice({
       state.pokemonDetail = action?.payload;
       state.loading = false;
     });
+
+    builder.addCase(getPokemonDetailAction.rejected, (state, action) => {
+      console.log(action?.error);
+      state.loading = false;
+    });
   },
 });
 

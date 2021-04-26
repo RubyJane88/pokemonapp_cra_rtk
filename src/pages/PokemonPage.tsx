@@ -35,7 +35,7 @@ const PokemonPage = () => {
     <div style={{ display: "grid", gridTemplateColumns: "32% 32% 32%" }}>
       {pokemon.results?.map((pokemon, index) => (
         <div key={pokemon.name + pokemon.url}>
-          <Card onClick={() => alert("next page Pokemon")}>
+          <Card onClick={() => history.push("/poke-details/" + (index + 1))}>
             <Img
               src={`https://pokeres.bastionbot.org/images/pokemon/${
                 index + 1
