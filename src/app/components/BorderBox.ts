@@ -6,6 +6,7 @@ export const BorderBox = styled("div")`
   display: block;
   max-width: 1280px;
   justify-self: center;
+  align-content: center;
   clear: both;
   overflow: hidden;
   position: relative;

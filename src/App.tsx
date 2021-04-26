@@ -12,8 +12,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div className="App">
-          <h1>Pokemon Works </h1>
+        <div>
           <Router />
         </div>
       </BrowserRouter>
