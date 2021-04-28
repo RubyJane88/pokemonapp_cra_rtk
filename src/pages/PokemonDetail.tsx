@@ -22,150 +22,159 @@ const PokemonDetail = () => {
   if (loading) return <h1> loading...</h1>;
 
   return (
-    <div
-      style={{
-        background: "gray",
-        display: "grid",
-      }}
-    >
+    <div style={{ background: "gray" }}>
       <div style={{ margin: "auto 10rem" }}>
         <BorderBox>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "3rem",
-            }}
-          >
-            <Link
+          <div>
+            <div
               style={{
-                backgroundColor: "darkorange",
-                padding: "1rem",
-                borderRadius: "5px",
-                color: "white",
+                display: "flex",
+                justifyContent: "space-around",
+                flexDirection: "row",
+                alignItems: "center",
+                padding: "3rem",
               }}
-              to={"/poke-details/" + (parseInt(id) - 1)}
             >
-              Back
-            </Link>
-          </div>
+              {/*not show the "Back button" if there's no more */}
+              {id == "1" ? null : (
+                <div>
+                  <Link
+                    style={{
+                      backgroundColor: "darkorange",
+                      padding: "1rem",
+                      borderRadius: "5px",
+                      color: "white",
+                    }}
+                    to={"/poke-details/" + (parseInt(id) - 1)}
+                  >
+                    Back
+                  </Link>
+                </div>
+              )}
 
-          <div style={{ justifyItems: "center", display: "grid" }}>
-            <H1>{pokemonDetail?.name} </H1>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "3rem",
-            }}
-          >
-            <Link
-              style={{
-                backgroundColor: "darkolivegreen",
-                color: "white",
-                padding: "1rem",
-                margin: "2rem",
-                borderRadius: "5px",
-              }}
-              to={"/poke-details/" + (parseInt(id) + 1)}
-            >
-              Next
-            </Link>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              background: "lightgray",
-              gridTemplateColumns: "30rem 30rem",
-              gridTemplateRows: "30rem 30rem",
-              margin: "2rem",
-              padding: "2rem",
-            }}
-          >
-            <Card>
-              {/*if id is true = render img  */}
-
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                {id && (
-                  <img
-                    height={"80%"}
-                    width={"80%"}
-                    src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
-                    alt="picture"
-                  />
-                )}
+              <div style={{ justifyItems: "center", display: "grid" }}>
+                <H1>{pokemonDetail?.name}</H1>
               </div>
-            </Card>
+
+              <div>
+                <Link
+                  style={{
+                    backgroundColor: "darkolivegreen",
+                    color: "white",
+                    padding: "1rem",
+                    margin: "2rem",
+                    borderRadius: "5px",
+                  }}
+                  to={"/poke-details/" + (parseInt(id) + 1)}
+                >
+                  Next
+                </Link>
+              </div>
+            </div>
+
+            {/*BIG DIV */}
 
             <div
               style={{
-                gridTemplateRows: "20rem 10rem 20rem",
-                gridTemplateColumns: "20rem 10rem 20rem",
+                display: "grid",
+                background: "lightgray",
+                gridTemplateColumns: "30rem 30rem",
+                gridTemplateRows: "30rem 30rem",
+                margin: "2rem",
                 padding: "2rem",
               }}
             >
-              <P>
-                Pokémon is short for “Pocket Monsters", the original Japanese
-                name. The franchise has its roots in a gaming magazine in the
-                early 1980s in Japan—Game Freak, started by Satoshi Tajiri and
-                Ken Sugimori.
-              </P>
+              <Card>
+                {/*if id is true = render img  */}
 
-              <div>
-                <P>Base Experience: </P>
-                {pokemonDetail?.base_experience}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  {id && (
+                    <img
+                      height={"80%"}
+                      width={"80%"}
+                      src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
+                      alt="picture"
+                    />
+                  )}
+                </div>
+              </Card>
+
+              <div
+                style={{
+                  gridTemplateRows: "20rem 10rem 20rem",
+                  gridTemplateColumns: "20rem 10rem 20rem",
+                  padding: "2rem",
+                }}
+              >
+                <div>
+                  <P>
+                    Pokémon is short for “Pocket Monsters", the original
+                    Japanese name. The franchise has its roots in a gaming
+                    magazine in the early 1980s in Japan—Game Freak, started by
+                    Satoshi Tajiri and Ken Sugimori.
+                  </P>
+                </div>
+                <div>
+                  <P>Base Experience: </P>
+                  {pokemonDetail?.base_experience}
+                </div>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "200px 200px",
+                    gridTemplateRows: "150px 150px",
+                  }}
+                >
+                  <div>
+                    <h2>Abilities</h2>
+                    {pokemonDetail?.abilities?.map((ability) => (
+                      <div key={ability.ability.name}>
+                        {ability.ability.name}
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <h2> Height</h2>
+                    {pokemonDetail?.height}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginLeft: "3rem" }}>
+                <div>
+                  {" "}
+                  <H1> STATS </H1>
+                </div>
+                <div style={{ marginTop: "2rem" }}>
+                  {pokemonDetail?.stats?.map((stat) => (
+                    <span key={stat.stat.name}>
+                      {` 
+                       ${stat.base_stat} 
+                     ${stat.effort}`}{" "}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               <div>
-                <h2> Abilities</h2>
-                {pokemonDetail?.abilities?.map((ability) => (
-                  <div key={ability.ability.name}> {ability.ability.name} </div>
+                <H1>Moves </H1>
+                {pokemonDetail?.moves?.map((v) => (
+                  <span key={v.move.url}>{v.move.name} , </span>
                 ))}
               </div>
-
-              <div>
-                <h2> Height</h2>
-                {pokemonDetail?.height}
-              </div>
-            </div>
-
-            <div style={{ marginLeft: "3rem" }}>
-              <H1> Stats</H1>
-              <div>
-                {pokemonDetail?.stats?.map((stat) => (
-                  <li key={stat.stat.name}>
-                    {` ${stat.stat.name}  ${stat.base_stat}  ${stat.effort} `}
-                  </li>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginLeft: "2rem" }}>
-              <H1>Moves </H1>
-              {pokemonDetail?.moves?.map((v) => (
-                <li key={v.move.url}>{v.move.name}, </li>
-              ))}
             </div>
           </div>
-        </BorderBox>{" "}
+        </BorderBox>
       </div>
     </div>
   );
 };
-
 export default PokemonDetail;
